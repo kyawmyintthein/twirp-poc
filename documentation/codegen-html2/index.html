@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>protos/haberdasher/service.proto</title>
+  <title>protos/user/v1/service.proto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8" />
@@ -696,8 +696,14 @@ margin-bottom: 20px;
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-        defs["haberdasherHat"] = {"type":"object","properties":{"inches":{"type":"integer","format":"int32"},"color":{"type":"string"},"name":{"type":"string"}},"description":"A Hat is a piece of headwear made by a Haberdasher."};
-        defs["haberdasherSize"] = {"type":"object","properties":{"inches":{"type":"integer","format":"int32"}},"description":"Size of a Hat, in inches."};
+        defs["v1Device"] = {"type":"object","properties":{"device_id":{"type":"string"},"device_type":{"type":"string"}}};
+        defs["v1Empty"] = {"type":"object"};
+        defs["v1GetProfileRequest"] = {"type":"object","properties":{"userID":{"type":"string"},"includeDevices":{"type":"boolean","format":"boolean"}}};
+        defs["v1LoginSession"] = {"type":"object","properties":{"access_token":{"type":"string"},"expired_at":{"type":"string","format":"int64"}}};
+        defs["v1OTPAuth"] = {"type":"object","properties":{"token":{"type":"string"},"code":{"type":"string"}}};
+        defs["v1UpdateProfileRequest"] = {"type":"object","properties":{"uuid":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"}}};
+        defs["v1UserOnboardingRequest"] = {"type":"object","properties":{"otp_auth":{"$ref":"#/definitions/v1OTPAuth"},"device_id":{"type":"string"},"device_type":{"type":"string"}}};
+        defs["v1UserProfile"] = {"type":"object","properties":{"uuid":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"isd_code":{"type":"string"},"mobile_no":{"type":"string"},"devices":{"type":"array","items":{"$ref":"#/definitions/v1Device"}}}};
   </script>
 
   <div class="container-fluid">
@@ -714,9 +720,15 @@ margin-bottom: 20px;
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
-                  <li class="nav-header" data-group="Haberdasher"><a href="#api-Haberdasher">API Methods - Haberdasher</a></li>
-                    <li data-group="Haberdasher" data-name="makeHat" class="">
-                      <a href="#api-Haberdasher-makeHat">makeHat</a>
+                  <li class="nav-header" data-group="UserServce"><a href="#api-UserServce">API Methods - UserServce</a></li>
+                    <li data-group="UserServce" data-name="onboarding" class="">
+                      <a href="#api-UserServce-onboarding">onboarding</a>
+                    </li>
+                    <li data-group="UserServce" data-name="profile" class="">
+                      <a href="#api-UserServce-profile">profile</a>
+                    </li>
+                    <li data-group="UserServce" data-name="updateProfile" class="">
+                      <a href="#api-UserServce-updateProfile">updateProfile</a>
                     </li>
           </ul>
         </nav>
@@ -724,7 +736,7 @@ margin-bottom: 20px;
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>protos/haberdasher/service.proto</h1>
+            <h1>protos/user/v1/service.proto</h1>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -737,13 +749,13 @@ margin-bottom: 20px;
           </div>
         </div>
         <div id="sections">
-                <section id="api-Haberdasher">
-                  <h1>Haberdasher</h1>
-                    <div id="api-Haberdasher-makeHat">
-                      <article id="api-Haberdasher-makeHat-0" data-group="User" data-name="makeHat" data-version="0">
+                <section id="api-UserServce">
+                  <h1>UserServce</h1>
+                    <div id="api-UserServce-onboarding">
+                      <article id="api-UserServce-onboarding-0" data-group="User" data-name="onboarding" data-version="0">
                         <div class="pull-left">
-                          <h1>makeHat</h1>
-                          <p>MakeHat produces a hat of mysterious, randomly-selected color!</p>
+                          <h1>onboarding</h1>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -751,84 +763,83 @@ margin-bottom: 20px;
                         <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/twirp/rpc.haberdasher.Haberdasher/MakeHat</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/twirp/rpc.user.v1.UserServce/Onboarding</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Haberdasher-makeHat-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Haberdasher-makeHat-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Haberdasher-makeHat-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Haberdasher-makeHat-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Haberdasher-makeHat-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Haberdasher-makeHat-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Haberdasher-makeHat-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Haberdasher-makeHat-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Haberdasher-makeHat-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Haberdasher-makeHat-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Haberdasher-makeHat-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-UserServce-onboarding-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-UserServce-onboarding-0-java">Java</a></li>
+                          <li class=""><a href="#examples-UserServce-onboarding-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-UserServce-onboarding-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-UserServce-onboarding-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-UserServce-onboarding-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-UserServce-onboarding-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-UserServce-onboarding-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-UserServce-onboarding-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-UserServce-onboarding-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-UserServce-onboarding-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Haberdasher-makeHat-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "http://localhost/twirp/rpc.haberdasher.Haberdasher/MakeHat"</code></pre>
+                          <div class="tab-pane active" id="examples-UserServce-onboarding-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "http://localhost/twirp/rpc.user.v1.UserServce/Onboarding"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Haberdasher-makeHat-0-java">
+                          <div class="tab-pane" id="examples-UserServce-onboarding-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.HaberdasherApi;
+import io.swagger.client.api.UserServceApi;
 
 import java.io.File;
 import java.util.*;
 
-public class HaberdasherApiExample {
+public class UserServceApiExample {
 
     public static void main(String[] args) {
         
-        HaberdasherApi apiInstance = new HaberdasherApi();
-        HaberdasherSize body = ; // HaberdasherSize | 
+        UserServceApi apiInstance = new UserServceApi();
+        V1UserOnboardingRequest body = ; // V1UserOnboardingRequest | 
         try {
-            haberdasherHat result = apiInstance.makeHat(body);
+            v1LoginSession result = apiInstance.onboarding(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling HaberdasherApi#makeHat");
+            System.err.println("Exception when calling UserServceApi#onboarding");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Haberdasher-makeHat-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.HaberdasherApi;
+                          <div class="tab-pane" id="examples-UserServce-onboarding-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.UserServceApi;
 
-public class HaberdasherApiExample {
+public class UserServceApiExample {
 
     public static void main(String[] args) {
-        HaberdasherApi apiInstance = new HaberdasherApi();
-        HaberdasherSize body = ; // HaberdasherSize | 
+        UserServceApi apiInstance = new UserServceApi();
+        V1UserOnboardingRequest body = ; // V1UserOnboardingRequest | 
         try {
-            haberdasherHat result = apiInstance.makeHat(body);
+            v1LoginSession result = apiInstance.onboarding(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling HaberdasherApi#makeHat");
+            System.err.println("Exception when calling UserServceApi#onboarding");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Haberdasher-makeHat-0-groovy">
+  <div class="tab-pane" id="examples-UserServce-onboarding-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Haberdasher-makeHat-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">HaberdasherSize *body = ; // 
+                            <div class="tab-pane" id="examples-UserServce-onboarding-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">V1UserOnboardingRequest *body = ; // 
 
-HaberdasherApi *apiInstance = [[HaberdasherApi alloc] init];
+UserServceApi *apiInstance = [[UserServceApi alloc] init];
 
-// MakeHat produces a hat of mysterious, randomly-selected color!
-[apiInstance makeHatWith:body
-              completionHandler: ^(haberdasherHat output, NSError* error) {
+[apiInstance onboardingWith:body
+              completionHandler: ^(v1LoginSession output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -839,12 +850,12 @@ HaberdasherApi *apiInstance = [[HaberdasherApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Haberdasher-makeHat-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var Protoshaberdasherserviceproto = require('protoshaberdasherserviceproto');
+                            <div class="tab-pane" id="examples-UserServce-onboarding-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var Protosuserv1serviceproto = require('protosuserv1serviceproto');
 
-var api = new Protoshaberdasherserviceproto.HaberdasherApi()
+var api = new Protosuserv1serviceproto.UserServceApi()
 
-var body = ; // {HaberdasherSize} 
+var body = ; // {V1UserOnboardingRequest} 
 
 
 var callback = function(error, data, response) {
@@ -854,14 +865,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.makeHat(body, callback);
+api.onboarding(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Haberdasher-makeHat-0-angular">
+                            <!--<div class="tab-pane" id="examples-UserServce-onboarding-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Haberdasher-makeHat-0-csharp">
+                            <div class="tab-pane" id="examples-UserServce-onboarding-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -870,23 +881,22 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class makeHatExample
+    public class onboardingExample
     {
         public void main()
         {
             
-            var apiInstance = new HaberdasherApi();
-            var body = new HaberdasherSize(); // HaberdasherSize | 
+            var apiInstance = new UserServceApi();
+            var body = new V1UserOnboardingRequest(); // V1UserOnboardingRequest | 
 
             try
             {
-                // MakeHat produces a hat of mysterious, randomly-selected color!
-                haberdasherHat result = apiInstance.makeHat(body);
+                v1LoginSession result = apiInstance.onboarding(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling HaberdasherApi.makeHat: " + e.Message );
+                Debug.Print("Exception when calling UserServceApi.onboarding: " + e.Message );
             }
         }
     }
@@ -894,40 +904,40 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Haberdasher-makeHat-0-php">
+                            <div class="tab-pane" id="examples-UserServce-onboarding-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\HaberdasherApi();
-$body = ; // HaberdasherSize | 
+$api_instance = new Swagger\Client\Api\UserServceApi();
+$body = ; // V1UserOnboardingRequest | 
 
 try {
-    $result = $api_instance->makeHat($body);
+    $result = $api_instance->onboarding($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling HaberdasherApi->makeHat: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserServceApi->onboarding: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Haberdasher-makeHat-0-perl">
+                            <div class="tab-pane" id="examples-UserServce-onboarding-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::HaberdasherApi;
+use WWW::SwaggerClient::UserServceApi;
 
-my $api_instance = WWW::SwaggerClient::HaberdasherApi->new();
-my $body = WWW::SwaggerClient::Object::HaberdasherSize->new(); # HaberdasherSize | 
+my $api_instance = WWW::SwaggerClient::UserServceApi->new();
+my $body = WWW::SwaggerClient::Object::V1UserOnboardingRequest->new(); # V1UserOnboardingRequest | 
 
 eval { 
-    my $result = $api_instance->makeHat(body => $body);
+    my $result = $api_instance->onboarding(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling HaberdasherApi->makeHat: $@\n";
+    warn "Exception when calling UserServceApi->onboarding: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Haberdasher-makeHat-0-python">
+                            <div class="tab-pane" id="examples-UserServce-onboarding-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -935,15 +945,14 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.HaberdasherApi()
-body =  # HaberdasherSize | 
+api_instance = swagger_client.UserServceApi()
+body =  # V1UserOnboardingRequest | 
 
 try: 
-    # MakeHat produces a hat of mysterious, randomly-selected color!
-    api_response = api_instance.make_hat(body)
+    api_response = api_instance.onboarding(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling HaberdasherApi->makeHat: %s\n" % e)</code></pre>
+    print("Exception when calling UserServceApi->onboarding: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -968,7 +977,7 @@ $(document).ready(function() {
   "name" : "body",
   "required" : true,
   "schema" : {
-    "$ref" : "#/definitions/haberdasherSize"
+    "$ref" : "#/definitions/v1UserOnboardingRequest"
   }
 };
   var schema = schemaWrapper.schema;
@@ -982,12 +991,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_makeHat_body');
+  var result = $('#d2e199_onboarding_body');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_makeHat_body"></div>
+<div id="d2e199_onboarding_body"></div>
 </td>
 </tr>
 
@@ -1000,20 +1009,20 @@ $(document).ready(function() {
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-makeHat-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-onboarding-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-makeHat-200-schema">
-                                  <div id='responses-makeHat-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-onboarding-200-schema">
+                                  <div id='responses-onboarding-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "A successful response.",
   "schema" : {
-    "$ref" : "#/definitions/haberdasherHat"
+    "$ref" : "#/definitions/v1LoginSession"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -1028,14 +1037,614 @@ $(document).ready(function() {
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-makeHat-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-makeHat-200-schema-200');
+                                        $('#responses-onboarding-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-onboarding-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-makeHat-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-onboarding-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-UserServce-profile">
+                      <article id="api-UserServce-profile-0" data-group="User" data-name="profile" data-version="0">
+                        <div class="pull-left">
+                          <h1>profile</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/twirp/rpc.user.v1.UserServce/Profile</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-UserServce-profile-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-UserServce-profile-0-java">Java</a></li>
+                          <li class=""><a href="#examples-UserServce-profile-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-UserServce-profile-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-UserServce-profile-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-UserServce-profile-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-UserServce-profile-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-UserServce-profile-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-UserServce-profile-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-UserServce-profile-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-UserServce-profile-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-UserServce-profile-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "http://localhost/twirp/rpc.user.v1.UserServce/Profile"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-UserServce-profile-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.UserServceApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UserServceApiExample {
+
+    public static void main(String[] args) {
+        
+        UserServceApi apiInstance = new UserServceApi();
+        V1GetProfileRequest body = ; // V1GetProfileRequest | 
+        try {
+            v1UserProfile result = apiInstance.profile(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserServceApi#profile");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-UserServce-profile-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.UserServceApi;
+
+public class UserServceApiExample {
+
+    public static void main(String[] args) {
+        UserServceApi apiInstance = new UserServceApi();
+        V1GetProfileRequest body = ; // V1GetProfileRequest | 
+        try {
+            v1UserProfile result = apiInstance.profile(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserServceApi#profile");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-UserServce-profile-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-UserServce-profile-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">V1GetProfileRequest *body = ; // 
+
+UserServceApi *apiInstance = [[UserServceApi alloc] init];
+
+[apiInstance profileWith:body
+              completionHandler: ^(v1UserProfile output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserServce-profile-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var Protosuserv1serviceproto = require('protosuserv1serviceproto');
+
+var api = new Protosuserv1serviceproto.UserServceApi()
+
+var body = ; // {V1GetProfileRequest} 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.profile(body, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-UserServce-profile-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-UserServce-profile-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class profileExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new UserServceApi();
+            var body = new V1GetProfileRequest(); // V1GetProfileRequest | 
+
+            try
+            {
+                v1UserProfile result = apiInstance.profile(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserServceApi.profile: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserServce-profile-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\UserServceApi();
+$body = ; // V1GetProfileRequest | 
+
+try {
+    $result = $api_instance->profile($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserServceApi->profile: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserServce-profile-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::UserServceApi;
+
+my $api_instance = WWW::SwaggerClient::UserServceApi->new();
+my $body = WWW::SwaggerClient::Object::V1GetProfileRequest->new(); # V1GetProfileRequest | 
+
+eval { 
+    my $result = $api_instance->profile(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling UserServceApi->profile: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserServce-profile-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.UserServceApi()
+body =  # V1GetProfileRequest | 
+
+try: 
+    api_response = api_instance.profile(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserServceApi->profile: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "body",
+  "required" : true,
+  "schema" : {
+    "$ref" : "#/definitions/v1GetProfileRequest"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_profile_body');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_profile_body"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - A successful response. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-profile-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-profile-200-schema">
+                                  <div id='responses-profile-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "A successful response.",
+  "schema" : {
+    "$ref" : "#/definitions/v1UserProfile"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-profile-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-profile-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-profile-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-UserServce-updateProfile">
+                      <article id="api-UserServce-updateProfile-0" data-group="User" data-name="updateProfile" data-version="0">
+                        <div class="pull-left">
+                          <h1>updateProfile</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/twirp/rpc.user.v1.UserServce/UpdateProfile</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-UserServce-updateProfile-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-UserServce-updateProfile-0-java">Java</a></li>
+                          <li class=""><a href="#examples-UserServce-updateProfile-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-UserServce-updateProfile-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-UserServce-updateProfile-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-UserServce-updateProfile-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-UserServce-updateProfile-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-UserServce-updateProfile-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-UserServce-updateProfile-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-UserServce-updateProfile-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-UserServce-updateProfile-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-UserServce-updateProfile-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "http://localhost/twirp/rpc.user.v1.UserServce/UpdateProfile"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-UserServce-updateProfile-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.UserServceApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UserServceApiExample {
+
+    public static void main(String[] args) {
+        
+        UserServceApi apiInstance = new UserServceApi();
+        V1UpdateProfileRequest body = ; // V1UpdateProfileRequest | 
+        try {
+            v1Empty result = apiInstance.updateProfile(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserServceApi#updateProfile");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-UserServce-updateProfile-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.UserServceApi;
+
+public class UserServceApiExample {
+
+    public static void main(String[] args) {
+        UserServceApi apiInstance = new UserServceApi();
+        V1UpdateProfileRequest body = ; // V1UpdateProfileRequest | 
+        try {
+            v1Empty result = apiInstance.updateProfile(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserServceApi#updateProfile");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-UserServce-updateProfile-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-UserServce-updateProfile-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">V1UpdateProfileRequest *body = ; // 
+
+UserServceApi *apiInstance = [[UserServceApi alloc] init];
+
+[apiInstance updateProfileWith:body
+              completionHandler: ^(v1Empty output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserServce-updateProfile-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var Protosuserv1serviceproto = require('protosuserv1serviceproto');
+
+var api = new Protosuserv1serviceproto.UserServceApi()
+
+var body = ; // {V1UpdateProfileRequest} 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.updateProfile(body, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-UserServce-updateProfile-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-UserServce-updateProfile-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class updateProfileExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new UserServceApi();
+            var body = new V1UpdateProfileRequest(); // V1UpdateProfileRequest | 
+
+            try
+            {
+                v1Empty result = apiInstance.updateProfile(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserServceApi.updateProfile: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserServce-updateProfile-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\UserServceApi();
+$body = ; // V1UpdateProfileRequest | 
+
+try {
+    $result = $api_instance->updateProfile($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserServceApi->updateProfile: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserServce-updateProfile-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::UserServceApi;
+
+my $api_instance = WWW::SwaggerClient::UserServceApi->new();
+my $body = WWW::SwaggerClient::Object::V1UpdateProfileRequest->new(); # V1UpdateProfileRequest | 
+
+eval { 
+    my $result = $api_instance->updateProfile(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling UserServceApi->updateProfile: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserServce-updateProfile-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.UserServceApi()
+body =  # V1UpdateProfileRequest | 
+
+try: 
+    api_response = api_instance.update_profile(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserServceApi->updateProfile: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "body",
+  "required" : true,
+  "schema" : {
+    "$ref" : "#/definitions/v1UpdateProfileRequest"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_updateProfile_body');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_updateProfile_body"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - A successful response. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-updateProfile-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-updateProfile-200-schema">
+                                  <div id='responses-updateProfile-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "A successful response.",
+  "schema" : {
+    "$ref" : "#/definitions/v1Empty"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-updateProfile-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-updateProfile-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-updateProfile-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>protos/haberdasher/service.proto | API Reference</title>
+    <title>protos/user/v1/service.proto | API Reference</title>
     <link rel="stylesheet" href="stylesheets/foundation.min.css" />
     <link rel="stylesheet" href="stylesheets/spectacle.min.css" />
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -21,16 +21,38 @@
           <a href="#introduction">Introduction</a>
           <h5>Paths</h5>
           <!-- <section>
-                <a href="#path--twirp-rpc.haberdasher.Haberdasher-MakeHat">/twirp/rpc.haberdasher.Haberdasher/MakeHat</a>
+                <a href="#path--twirp-rpc.user.v1.UserServce-Onboarding">/twirp/rpc.user.v1.UserServce/Onboarding</a>
                 <ul> -->
           <!-- <li> -->
-          <a href="#operation--twirp-rpc.haberdasher.Haberdasher-MakeHat-post"> MakeHat produces a hat of mysterious, randomly-selected color! </a>
+          <a href="#operation--twirp-rpc.user.v1.UserServce-Onboarding-post"> POST /twirp/rpc.user.v1.UserServce/Onboarding </a>
+          <!-- </li> -->
+          <!-- </ul>
+              </section> -->
+          <!-- <section>
+                <a href="#path--twirp-rpc.user.v1.UserServce-Profile">/twirp/rpc.user.v1.UserServce/Profile</a>
+                <ul> -->
+          <!-- <li> -->
+          <a href="#operation--twirp-rpc.user.v1.UserServce-Profile-post"> POST /twirp/rpc.user.v1.UserServce/Profile </a>
+          <!-- </li> -->
+          <!-- </ul>
+              </section> -->
+          <!-- <section>
+                <a href="#path--twirp-rpc.user.v1.UserServce-UpdateProfile">/twirp/rpc.user.v1.UserServce/UpdateProfile</a>
+                <ul> -->
+          <!-- <li> -->
+          <a href="#operation--twirp-rpc.user.v1.UserServce-UpdateProfile-post"> POST /twirp/rpc.user.v1.UserServce/UpdateProfile </a>
           <!-- </li> -->
           <!-- </ul>
               </section> -->
           <h5>Schema Definitions</h5>
-          <a href="#definition-haberdasherHat"> haberdasherHat </a>
-          <a href="#definition-haberdasherSize"> haberdasherSize </a>
+          <a href="#definition-v1Device"> v1Device </a>
+          <a href="#definition-v1Empty"> v1Empty </a>
+          <a href="#definition-v1GetProfileRequest"> v1GetProfileRequest </a>
+          <a href="#definition-v1LoginSession"> v1LoginSession </a>
+          <a href="#definition-v1OTPAuth"> v1OTPAuth </a>
+          <a href="#definition-v1UpdateProfileRequest"> v1UpdateProfileRequest </a>
+          <a href="#definition-v1UserOnboardingRequest"> v1UserOnboardingRequest </a>
+          <a href="#definition-v1UserProfile"> v1UserProfile </a>
         </nav>
       </div>
       <div id="docs" class="row collapse expanded drawer" data-drawer>
@@ -40,7 +62,7 @@
         <div class="example-box doc-content"></div>
         <article>
           <div id="introduction" data-traverse-target="introduction">
-            <h1 class="doc-title">protos/haberdasher/service.proto
+            <h1 class="doc-title">protos/user/v1/service.proto
               <span>API Reference</span>
             </h1>
             <div class="doc-row">
@@ -64,30 +86,25 @@
             </div>
           </div>
           <h1>Paths</h1>
-          <span id="path--twirp-rpc.haberdasher.Haberdasher-MakeHat"></span>
-          <div id="operation--twirp-rpc.haberdasher.Haberdasher-MakeHat-post" class="operation panel" data-traverse-target="operation--twirp-rpc.haberdasher.Haberdasher-MakeHat-post">
+          <span id="path--twirp-rpc.user.v1.UserServce-Onboarding"></span>
+          <div id="operation--twirp-rpc.user.v1.UserServce-Onboarding-post" class="operation panel" data-traverse-target="operation--twirp-rpc.user.v1.UserServce-Onboarding-post">
             <!-- <section class="operation-tags row"> -->
             <!-- <div class="doc-copy"> -->
             <div class="operation-tags">
-              <a class="label" href="#tag-Haberdasher">Haberdasher</a>
+              <a class="label" href="#tag-UserServce">UserServce</a>
               <!---->
             </div>
             <!-- </div> -->
             <!-- </section> -->
             <h2 class="operation-title">
-              <span class="operation-summary">MakeHat produces a hat of mysterious, randomly-selected color!</span>
+              <span class="operation-name">
+                <span class="operation-name">POST</span>
+                <span class="operation-path">/twirp/rpc.user.v1.UserServce/Onboarding</span>
+              </span>
             </h2>
             <div class="doc-row content-types">
               <div class="doc-copy"> </div>
               <div class="doc-examples"> </div>
-            </div>
-            <div class="doc-row">
-              <div class="doc-copy">
-                <section class="swagger-operation-path">
-                  <span class="operation-method">POST</span>
-                  <span class="operation-path">/twirp/rpc.haberdasher.Haberdasher/MakeHat</span>
-                </section>
-              </div>
             </div>
             <div class="doc-row">
               <div class="doc-copy">
@@ -96,7 +113,7 @@
                     <div class="prop-name">
                       <div class="swagger-request-model">
                         <span class="">
-                          <a class="json-schema-ref" href="#/definitions/haberdasherSize">haberdasherSize</a>
+                          <a class="json-schema-ref" href="#/definitions/v1UserOnboardingRequest">v1UserOnboardingRequest</a>
                         </span>
                       </div>
                     </div>
@@ -111,7 +128,12 @@
                 <section>
                   <h5>Request Example</h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;inches&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+  <span class="hljs-attr">&quot;otp_auth&quot;</span>: {
+    <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  },
+  <span class="hljs-attr">&quot;device_id&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;device_type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -126,7 +148,7 @@
                       <div class="prop-title">200 OK</div>
                       <div class="prop-ref">
                         <span class="">
-                          <a class="json-schema-ref" href="#/definitions/haberdasherHat">haberdasherHat</a>
+                          <a class="json-schema-ref" href="#/definitions/v1LoginSession">v1LoginSession</a>
                         </span>
                       </div>
                       <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
@@ -143,10 +165,184 @@
                     <span>(200 OK)</span>
                   </h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;inches&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;color&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  <span class="hljs-attr">&quot;access_token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;expired_at&quot;</span>: <span class="hljs-string">&quot;string (int64)&quot;</span>
 }
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path--twirp-rpc.user.v1.UserServce-Profile"></span>
+          <div id="operation--twirp-rpc.user.v1.UserServce-Profile-post" class="operation panel" data-traverse-target="operation--twirp-rpc.user.v1.UserServce-Profile-post">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-UserServce">UserServce</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">POST</span>
+                <span class="operation-path">/twirp/rpc.user.v1.UserServce/Profile</span>
+              </span>
+            </h2>
+            <div class="doc-row content-types">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"> </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body">
+                  <div class="prop-row">
+                    <div class="prop-name">
+                      <div class="swagger-request-model">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/v1GetProfileRequest">v1GetProfileRequest</a>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="prop-value columns small-6">
+                      <!-- <div class="swagger-request-description"> -->undefined
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Request Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;userID&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;includeDevices&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/v1UserProfile">v1UserProfile</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>A successful response.</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;uuid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;first_name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;last_name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;isd_code&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;mobile_no&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;devices&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;device_id&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;device_type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path--twirp-rpc.user.v1.UserServce-UpdateProfile"></span>
+          <div id="operation--twirp-rpc.user.v1.UserServce-UpdateProfile-post" class="operation panel" data-traverse-target="operation--twirp-rpc.user.v1.UserServce-UpdateProfile-post">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-UserServce">UserServce</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">POST</span>
+                <span class="operation-path">/twirp/rpc.user.v1.UserServce/UpdateProfile</span>
+              </span>
+            </h2>
+            <div class="doc-row content-types">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"> </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body">
+                  <div class="prop-row">
+                    <div class="prop-name">
+                      <div class="swagger-request-model">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/v1UpdateProfileRequest">v1UpdateProfileRequest</a>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="prop-value columns small-6">
+                      <!-- <div class="swagger-request-description"> -->undefined
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Request Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;uuid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;first_name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;last_name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/v1Empty">v1Empty</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>A successful response.</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json"><span class="hljs-string">&quot;object&quot;</span>
 </code></pre>
                   <!-- </div> -->
                 </section>
@@ -154,9 +350,9 @@
             </div>
           </div>
           <h1>Schema Definitions</h1>
-          <div id="definition-haberdasherHat" class="definition panel" data-traverse-target="definition-haberdasherHat">
+          <div id="definition-v1Device" class="definition panel" data-traverse-target="definition-v1Device">
             <h2 class="panel-title">
-              <a name="/definitions/haberdasherHat"></a>haberdasherHat:
+              <a name="/definitions/v1Device"></a>v1Device:
               <span class="json-property-type">
                 <span class="json-property-type">object</span>
                 <span class="json-property-range" title="Value limits"></span>
@@ -164,24 +360,15 @@
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
-                <section class="json-schema-description">
-                  <p>A Hat is a piece of headwear made by a Haberdasher.</p>
-                </section>
                 <section class="json-schema-properties">
                   <dl>
-                    <dt data-property-name="inches">
-                      <span class="json-property-name">inches:</span>
-                      <span class="json-property-type">integer</span>
-                      <span class="json-property-format">(int32)</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </dt>
-                    <dt data-property-name="color">
-                      <span class="json-property-name">color:</span>
+                    <dt data-property-name="device_id">
+                      <span class="json-property-name">device_id:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
-                    <dt data-property-name="name">
-                      <span class="json-property-name">name:</span>
+                    <dt data-property-name="device_type">
+                      <span class="json-property-name">device_type:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
@@ -192,9 +379,8 @@
                 <section>
                   <h5>Example</h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;inches&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;color&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  <span class="hljs-attr">&quot;device_id&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;device_type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -202,9 +388,29 @@
               </div>
             </div>
           </div>
-          <div id="definition-haberdasherSize" class="definition panel" data-traverse-target="definition-haberdasherSize">
+          <div id="definition-v1Empty" class="definition panel" data-traverse-target="definition-v1Empty">
             <h2 class="panel-title">
-              <a name="/definitions/haberdasherSize"></a>haberdasherSize:
+              <a name="/definitions/v1Empty"></a>v1Empty:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json"><span class="hljs-string">&quot;object&quot;</span>
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-v1GetProfileRequest" class="definition panel" data-traverse-target="definition-v1GetProfileRequest">
+            <h2 class="panel-title">
+              <a name="/definitions/v1GetProfileRequest"></a>v1GetProfileRequest:
               <span class="json-property-type">
                 <span class="json-property-type">object</span>
                 <span class="json-property-range" title="Value limits"></span>
@@ -212,15 +418,17 @@
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
-                <section class="json-schema-description">
-                  <p>Size of a Hat, in inches.</p>
-                </section>
                 <section class="json-schema-properties">
                   <dl>
-                    <dt data-property-name="inches">
-                      <span class="json-property-name">inches:</span>
-                      <span class="json-property-type">integer</span>
-                      <span class="json-property-format">(int32)</span>
+                    <dt data-property-name="userID">
+                      <span class="json-property-name">userID:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="includeDevices">
+                      <span class="json-property-name">includeDevices:</span>
+                      <span class="json-property-type">boolean</span>
+                      <span class="json-property-format">(boolean)</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                   </dl>
@@ -230,7 +438,247 @@
                 <section>
                   <h5>Example</h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;inches&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+  <span class="hljs-attr">&quot;userID&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;includeDevices&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-v1LoginSession" class="definition panel" data-traverse-target="definition-v1LoginSession">
+            <h2 class="panel-title">
+              <a name="/definitions/v1LoginSession"></a>v1LoginSession:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="access_token">
+                      <span class="json-property-name">access_token:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="expired_at">
+                      <span class="json-property-name">expired_at:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-format">(int64)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;access_token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;expired_at&quot;</span>: <span class="hljs-string">&quot;string (int64)&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-v1OTPAuth" class="definition panel" data-traverse-target="definition-v1OTPAuth">
+            <h2 class="panel-title">
+              <a name="/definitions/v1OTPAuth"></a>v1OTPAuth:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="token">
+                      <span class="json-property-name">token:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="code">
+                      <span class="json-property-name">code:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-v1UpdateProfileRequest" class="definition panel" data-traverse-target="definition-v1UpdateProfileRequest">
+            <h2 class="panel-title">
+              <a name="/definitions/v1UpdateProfileRequest"></a>v1UpdateProfileRequest:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="uuid">
+                      <span class="json-property-name">uuid:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="first_name">
+                      <span class="json-property-name">first_name:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="last_name">
+                      <span class="json-property-name">last_name:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;uuid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;first_name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;last_name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-v1UserOnboardingRequest" class="definition panel" data-traverse-target="definition-v1UserOnboardingRequest">
+            <h2 class="panel-title">
+              <a name="/definitions/v1UserOnboardingRequest"></a>v1UserOnboardingRequest:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="otp_auth">
+                      <span class="json-property-name">otp_auth:</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/v1OTPAuth">v1OTPAuth</a>
+                        </span>
+                      </span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="device_id">
+                      <span class="json-property-name">device_id:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="device_type">
+                      <span class="json-property-name">device_type:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;otp_auth&quot;</span>: {
+    <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  },
+  <span class="hljs-attr">&quot;device_id&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;device_type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-v1UserProfile" class="definition panel" data-traverse-target="definition-v1UserProfile">
+            <h2 class="panel-title">
+              <a name="/definitions/v1UserProfile"></a>v1UserProfile:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="uuid">
+                      <span class="json-property-name">uuid:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="first_name">
+                      <span class="json-property-name">first_name:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="last_name">
+                      <span class="json-property-name">last_name:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="isd_code">
+                      <span class="json-property-name">isd_code:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="mobile_no">
+                      <span class="json-property-name">mobile_no:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="devices">
+                      <span class="json-property-name">devices:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;uuid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;first_name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;last_name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;isd_code&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;mobile_no&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;devices&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;device_id&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;device_type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->

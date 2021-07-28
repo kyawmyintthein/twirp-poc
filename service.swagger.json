@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "protos/haberdasher/service.proto",
+    "title": "protos/user/v1/service.proto",
     "version": "version not set"
   },
   "schemes": [
@@ -15,15 +15,14 @@
     "application/json"
   ],
   "paths": {
-    "/twirp/rpc.haberdasher.Haberdasher/MakeHat": {
+    "/twirp/rpc.user.v1.UserServce/Onboarding": {
       "post": {
-        "summary": "MakeHat produces a hat of mysterious, randomly-selected color!",
-        "operationId": "MakeHat",
+        "operationId": "Onboarding",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/haberdasherHat"
+              "$ref": "#/definitions/v1LoginSession"
             }
           }
         },
@@ -33,42 +32,171 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/haberdasherSize"
+              "$ref": "#/definitions/v1UserOnboardingRequest"
             }
           }
         ],
         "tags": [
-          "Haberdasher"
+          "UserServce"
+        ]
+      }
+    },
+    "/twirp/rpc.user.v1.UserServce/Profile": {
+      "post": {
+        "operationId": "Profile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UserProfile"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserServce"
+        ]
+      }
+    },
+    "/twirp/rpc.user.v1.UserServce/UpdateProfile": {
+      "post": {
+        "operationId": "UpdateProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Empty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserServce"
         ]
       }
     }
   },
   "definitions": {
-    "haberdasherHat": {
+    "v1Device": {
       "type": "object",
       "properties": {
-        "inches": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "color": {
+        "device_id": {
           "type": "string"
         },
-        "name": {
+        "device_type": {
           "type": "string"
         }
-      },
-      "description": "A Hat is a piece of headwear made by a Haberdasher."
+      }
     },
-    "haberdasherSize": {
+    "v1Empty": {
+      "type": "object"
+    },
+    "v1GetProfileRequest": {
       "type": "object",
       "properties": {
-        "inches": {
-          "type": "integer",
-          "format": "int32"
+        "userID": {
+          "type": "string"
+        },
+        "includeDevices": {
+          "type": "boolean",
+          "format": "boolean"
         }
-      },
-      "description": "Size of a Hat, in inches."
+      }
+    },
+    "v1LoginSession": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "expired_at": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1OTPAuth": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UpdateProfileRequest": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UserOnboardingRequest": {
+      "type": "object",
+      "properties": {
+        "otp_auth": {
+          "$ref": "#/definitions/v1OTPAuth"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "device_type": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UserProfile": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "isd_code": {
+          "type": "string"
+        },
+        "mobile_no": {
+          "type": "string"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Device"
+          }
+        }
+      }
     }
   }
 }
