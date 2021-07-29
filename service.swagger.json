@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "protos/user/v1/service.proto",
+    "title": "protos/objects/service.proto",
     "version": "version not set"
   },
   "schemes": [
@@ -15,14 +15,14 @@
     "application/json"
   ],
   "paths": {
-    "/twirp/rpc.user.v1.UserServce/Onboarding": {
+    "/twirp/rpc.object.ObjectService/GetLargeObject": {
       "post": {
-        "operationId": "Onboarding",
+        "operationId": "GetLargeObject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1LoginSession"
+              "$ref": "#/definitions/objectLargeObject"
             }
           }
         },
@@ -32,23 +32,23 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1UserOnboardingRequest"
+              "$ref": "#/definitions/objectLargeObjectRequest"
             }
           }
         ],
         "tags": [
-          "UserServce"
+          "ObjectService"
         ]
       }
     },
-    "/twirp/rpc.user.v1.UserServce/Profile": {
+    "/twirp/rpc.object.ObjectService/GetObject": {
       "post": {
-        "operationId": "Profile",
+        "operationId": "GetObject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1UserProfile"
+              "$ref": "#/definitions/objectObjectResponse"
             }
           }
         },
@@ -58,143 +58,134 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1GetProfileRequest"
+              "$ref": "#/definitions/objectObjectRequest"
             }
           }
         ],
         "tags": [
-          "UserServce"
-        ]
-      }
-    },
-    "/twirp/rpc.user.v1.UserServce/UpdateProfile": {
-      "post": {
-        "operationId": "UpdateProfile",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Empty"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateProfileRequest"
-            }
-          }
-        ],
-        "tags": [
-          "UserServce"
+          "ObjectService"
         ]
       }
     }
   },
   "definitions": {
-    "v1Device": {
+    "objectFriends": {
       "type": "object",
       "properties": {
-        "device_id": {
-          "type": "string"
+        "id": {
+          "type": "integer",
+          "format": "int64"
         },
-        "device_type": {
+        "name": {
           "type": "string"
         }
       }
     },
-    "v1Empty": {
-      "type": "object"
-    },
-    "v1GetProfileRequest": {
+    "objectLargeObject": {
       "type": "object",
       "properties": {
-        "userID": {
+        "_id": {
           "type": "string"
         },
-        "includeDevices": {
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "guid": {
+          "type": "string"
+        },
+        "isActive": {
           "type": "boolean",
           "format": "boolean"
-        }
-      }
-    },
-    "v1LoginSession": {
-      "type": "object",
-      "properties": {
-        "access_token": {
+        },
+        "balance": {
           "type": "string"
         },
-        "expired_at": {
-          "type": "string",
+        "picture": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
           "format": "int64"
-        }
-      }
-    },
-    "v1OTPAuth": {
-      "type": "object",
-      "properties": {
-        "token": {
+        },
+        "eyeColor": {
           "type": "string"
         },
-        "code": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UpdateProfileRequest": {
-      "type": "object",
-      "properties": {
-        "uuid": {
+        "name": {
           "type": "string"
         },
-        "first_name": {
+        "gender": {
           "type": "string"
         },
-        "last_name": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UserOnboardingRequest": {
-      "type": "object",
-      "properties": {
-        "otp_auth": {
-          "$ref": "#/definitions/v1OTPAuth"
-        },
-        "device_id": {
+        "company": {
           "type": "string"
         },
-        "device_type": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UserProfile": {
-      "type": "object",
-      "properties": {
-        "uuid": {
+        "email": {
           "type": "string"
         },
-        "first_name": {
+        "phone": {
           "type": "string"
         },
-        "last_name": {
+        "address": {
           "type": "string"
         },
-        "isd_code": {
+        "about": {
           "type": "string"
         },
-        "mobile_no": {
+        "registered": {
           "type": "string"
         },
-        "devices": {
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "tags": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1Device"
+            "type": "string"
           }
+        },
+        "friends": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/objectFriends"
+          }
+        },
+        "greeting": {
+          "type": "string"
+        },
+        "favoriteFruit": {
+          "type": "string"
+        }
+      }
+    },
+    "objectLargeObjectRequest": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "objectObjectRequest": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "objectObjectResponse": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "$ref": "#/definitions/objectLargeObject"
         }
       }
     }

@@ -8,7 +8,6 @@ package app
 import (
 	"github.com/kyawmyintthein/rzlog"
 	"github.com/kyawmyintthein/twirp-poc/app/devliery/rpcv1"
-	"github.com/kyawmyintthein/twirp-poc/app/domain/usecase/v1"
 	"github.com/kyawmyintthein/twirp-poc/app/infrastructure"
 	"github.com/kyawmyintthein/twirp-poc/app/injector"
 )
@@ -41,8 +40,7 @@ func New(configFilePath string) (*twripApp, error) {
 		return nil, err
 	}
 	dynamodb := injector.ProvideDynamodb(globalCfg, session)
-	userUC := ucv1.ProvideUserUC(globalCfg)
-	userServce := rpcv1.NewUserServiceRPCImpl(globalCfg, userUC)
+	objectService := rpcv1.NewObjectServiceRPCImpl(globalCfg)
 	appTwripApp := &twripApp{
 		cfg:         globalCfg,
 		cfgCli:      client,
@@ -52,8 +50,7 @@ func New(configFilePath string) (*twripApp, error) {
 		cache:       cache,
 		session:     session,
 		dynamodb:    dynamodb,
-		userRPC:     userServce,
-		userUC:      userUC,
+		objectRPC:   objectService,
 	}
 	return appTwripApp, nil
 }

@@ -11,9 +11,8 @@ import (
 	"github.com/kyawmyintthein/rzlog"
 	"github.com/kyawmyintthein/twirp-poc/app/config"
 	"github.com/kyawmyintthein/twirp-poc/app/domain/repository"
-	ucv1 "github.com/kyawmyintthein/twirp-poc/app/domain/usecase/v1"
 	"github.com/kyawmyintthein/twirp-poc/app/infrastructure"
-	userpbs "github.com/kyawmyintthein/twirp-poc/protopbs/protos/user/v1"
+	objectpbs "github.com/kyawmyintthein/twirp-poc/protopbs/protos/objects"
 	"github.com/twitchtv/twirp"
 )
 
@@ -34,13 +33,13 @@ type (
 		session  *session.Session
 		dynamodb repository.Dynamodb
 
-		userRPC userpbs.UserServce
-		userUC  ucv1.UserUC
+		objectRPC objectpbs.ObjectService
 	}
 )
 
 func (app *twripApp) Init() error {
-	twirpHandler := userpbs.NewUserServceServer(app.userRPC,
+
+	twirpHandler := objectpbs.NewObjectServiceServer(app.objectRPC,
 		twirp.WithServerPathPrefix("/rz"),
 		twirp.WithServerInterceptors(infrastructure.NewInterceptor()),
 		twirp.WithServerHooks(infrastructure.NewLoggingServerHooks()))

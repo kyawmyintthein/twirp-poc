@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package rpc.object;
+
+
+option go_package = "rpc/object";
+
+service ObjectService {
+  rpc GetLargeObject (LargeObjectRequest) returns (LargeObjectResponse){}
+  rpc GetObject (ObjectRequest) returns (ObjectResponse){}
+}
+
+message ObjectRequest {
+  int32 count = 1;
+}
+
+message ObjectResponse {
+  LargeObject object = 1;
+}
+
+message LargeObjectRequest {
+  int32 count = 1;
+}
+
+message LargeObjectResponse {
+  repeated LargeObject largeObjects = 1;
+}
+
+message LargeObject {
+        string _id = 1;
+        uint32 index = 2;
+        string guid = 3;
+        bool isActive = 4;
+        string balance = 5;
+        string picture = 6;
+        uint32 age = 7;
+        string eyeColor = 8;
+        string name = 9;
+        string gender = 10;
+        string company = 11;
+        string email = 12;
+        string phone = 13;
+        string address = 14;
+        string about = 15;
+        string registered = 16;
+        double latitude = 17;
+        double longitude = 18;
+        repeated string tags = 19;
+        repeated Friends friends = 20;
+        string greeting = 21;
+        string favoriteFruit = 22;
+}
+
+ message Friends {
+        uint32 id = 1;
+        string name = 2;
+    }
