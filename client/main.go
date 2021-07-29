@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	client := userpbs.NewUserServceJSONClient("http://localhost:8080", &http.Client{}, twirp.WithClientPathPrefix("/rz"))
+	client := userpbs.NewUserServceProtobufClient("http://localhost:8080", &http.Client{}, twirp.WithClientPathPrefix("/rz"))
 	for i := 0; i < 5; i++ {
 		loginSession, err := client.Onboarding(context.Background(), &userpbs.UserOnboardingRequest{})
 		if err != nil {
