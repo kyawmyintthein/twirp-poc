@@ -476,6 +476,8 @@ github.com/kyawmyintthein/rzerrors v1.0.0 h1:h4KlinZlfjeN/jTJtso5MVq7dx1m7rhLtdy
 github.com/kyawmyintthein/rzerrors v1.0.0/go.mod h1:aYKaEsUH9WVQLncgyGa/FjUWMPV0y7o+WD8fBbistIo=
 github.com/kyawmyintthein/rzlog v1.0.0 h1:lmxUO6suVWUscoJmGNKpVJ2Pe87Mp/k3meyjurgnvhg=
 github.com/kyawmyintthein/rzlog v1.0.0/go.mod h1:29tv3HOJkKl65JmKZ00HzdHdhoJCrnwY9wX85BH0hbw=
+github.com/kyawmyintthein/rzlog v1.0.1 h1:Z5+5mffE9rEQiHflEenp0jzP2iM8Psem/H8D/39A+hk=
+github.com/kyawmyintthein/rzlog v1.0.1/go.mod h1:GwVLZG2oMf9jAp6MINX+H8RcSTF3RjFTxNO6gg+ARDI=
 github.com/kyawmyintthein/rzmiddleware v1.0.0 h1:EhuM/eL1tdzIPFjwoxTr6GahjYMZrmyd7zS7/4ef/BU=
 github.com/kyawmyintthein/rzmiddleware v1.0.0/go.mod h1:TFgDGA4Q1NClMWeq/8TAXinxFoPzbp45cbKPssSVkQU=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=

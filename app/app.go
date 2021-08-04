@@ -43,14 +43,14 @@ func (app *twripApp) Init() error {
 	twirpHandler := userpbs.NewUserServceServer(app.userRPC,
 		twirp.WithServerPathPrefix("/rz"),
 		twirp.WithServerInterceptors(infrastructure.NewInterceptor()),
-		twirp.WithServerHooks(infrastructure.NewLoggingServerHooks()))
+		twirp.WithServerHooks(rzlog.TwirpServerLoggingHook()))
 	app.httpServer.Handler = twirpHandler
 	return nil
 }
 
 func (app *twripApp) Start() {
 	go func() {
-		err := app.httpServer.ListenAndServe()
+		err := app.httpServer.ListenAndServeTLS("server.crt", "server.key")
 		if err != nil {
 			rzlog.Errorf(context.Background(), err, "Failed to start HTTP server on port :%d ", app.cfg.App.ServerPort)
 			os.Exit(-1)
