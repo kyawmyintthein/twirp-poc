@@ -9,7 +9,8 @@ require (
 	github.com/google/wire v0.5.0
 	github.com/kyawmyintthein/rzcfg v1.0.0
 	github.com/kyawmyintthein/rzerrors v1.1.0
-	github.com/kyawmyintthein/rzlog v1.0.1
+	github.com/kyawmyintthein/rzlog v1.0.4
+	github.com/kyawmyintthein/rzmiddleware v1.0.0
 	github.com/onsi/gomega v1.14.0 // indirect
 	github.com/spf13/cast v1.4.0 // indirect
 	github.com/twitchtv/twirp v8.1.0+incompatible

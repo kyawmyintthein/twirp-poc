@@ -9,6 +9,7 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/kyawmyintthein/rzcfg"
 	"github.com/kyawmyintthein/rzlog"
+	"github.com/kyawmyintthein/rzmiddleware"
 	"github.com/kyawmyintthein/twirp-poc/app/config"
 	"github.com/kyawmyintthein/twirp-poc/app/domain/repository"
 	ucv1 "github.com/kyawmyintthein/twirp-poc/app/domain/usecase/v1"
@@ -42,10 +43,12 @@ type (
 func (app *twripApp) Init() error {
 	twirpHandler := userpbs.NewUserServceServer(app.userRPC,
 		twirp.WithServerPathPrefix("/rz"),
+		twirp.WithServerHooks(rzlog.TwirpServerLoggingHook()),
 		twirp.WithServerInterceptors(infrastructure.NewInterceptor()),
 
 		twirp.WithServerHooks(rzlog.TwirpServerLoggingHook()))
-	app.httpServer.Handler = twirpHandler
+	wrapped := rzmiddleware.RequestID(twirpHandler)
+	app.httpServer.Handler = wrapped
 	return nil
 }
 

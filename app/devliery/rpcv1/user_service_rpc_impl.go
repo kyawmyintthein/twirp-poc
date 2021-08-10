@@ -57,7 +57,7 @@ func (impl *userServiceRPCImpl) Onboarding(ctx context.Context, req *userpbs.Use
 	}
 
 	resp.AccessToken = loginSession.Token
-	rzlog.InfoKV(ctx, rzlog.KV{"resp": loginSession, "error": err}, "response")
+	rzlog.InfoKV(ctx, rzlog.KV{"resp": loginSession, "error": err}, "response logging")
 	return &resp, err
 }
 
