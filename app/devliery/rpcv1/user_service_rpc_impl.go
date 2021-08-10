@@ -3,15 +3,24 @@ package rpcv1
 import (
 	"context"
 
+	"github.com/kyawmyintthein/rzerrors"
+	"github.com/kyawmyintthein/rzlog"
 	"github.com/kyawmyintthein/twirp-poc/app/config"
 	"github.com/kyawmyintthein/twirp-poc/app/domain/dto"
 	ucv1 "github.com/kyawmyintthein/twirp-poc/app/domain/usecase/v1"
 	userpbs "github.com/kyawmyintthein/twirp-poc/protopbs/protos/user/v1"
+	"github.com/twitchtv/twirp"
 )
 
 type userServiceRPCImpl struct {
 	cfg    *config.GlobalCfg
 	userUC ucv1.UserUC
+}
+
+type ErrorTest struct {
+	*rzerrors.RZError
+	*rzerrors.ErrorWithID
+	*rzerrors.ErrorWithTwirpCode
 }
 
 func NewUserServiceRPCImpl(cfg *config.GlobalCfg, userUC ucv1.UserUC) userpbs.UserServce {
@@ -27,13 +36,28 @@ func (impl *userServiceRPCImpl) Onboarding(ctx context.Context, req *userpbs.Use
 		err  error
 	)
 
+	if req.DeviceId == "" {
+		return &resp, rzerrors.ConvertTwirpError(&ErrorTest{
+			RZError:            rzerrors.NewRZError("Empty Device ID"),
+			ErrorWithID:        rzerrors.NewErrorWithID("invalid_or_empty_device_id"),
+			ErrorWithTwirpCode: rzerrors.NewErrorWithTwirpCode(twirp.InvalidArgument),
+		})
+	}
+
 	loginSession, err := impl.userUC.Onboarding(ctx, &dto.UserOnboardingRequest{
 		DeviceID:   req.DeviceId,
 		DeviceType: req.DeviceType,
 	})
+	if err != nil {
+		return &resp, rzerrors.ConvertTwirpError(&ErrorTest{
+			RZError:            rzerrors.NewRZError("email is invalid or empty"),
+			ErrorWithID:        rzerrors.NewErrorWithID("invalid_email"),
+			ErrorWithTwirpCode: rzerrors.NewErrorWithTwirpCode(twirp.Aborted),
+		})
+	}
 
 	resp.AccessToken = loginSession.Token
-
+	rzlog.InfoKV(ctx, rzlog.KV{"resp": loginSession, "error": err}, "response")
 	return &resp, err
 }
 

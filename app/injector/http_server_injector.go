@@ -1,7 +1,6 @@
 package injector
 
 import (
-	"context"
 	"crypto/tls"
 	"fmt"
 	"io/ioutil"
@@ -11,7 +10,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/kyawmyintthein/rzlog"
 	"github.com/kyawmyintthein/twirp-poc/app/config"
 )
 
@@ -30,7 +28,7 @@ func (cw *ConnectionWatcher) OnStateChange(conn net.Conn, state http.ConnState) 
 		atomic.AddInt64(&cw.n, -1)
 	}
 
-	rzlog.InfoKV(context.Background(), rzlog.KV{"count": int(atomic.LoadInt64(&cw.n)), "remote_addr": conn.RemoteAddr()}, "cw watcher")
+	// rzlog.InfoKV(context.Background(), rzlog.KV{"count": int(atomic.LoadInt64(&cw.n)), "remote_addr": conn.RemoteAddr()}, "cw watcher")
 }
 
 // Count returns the number of connections at the time

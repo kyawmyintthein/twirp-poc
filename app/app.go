@@ -43,6 +43,7 @@ func (app *twripApp) Init() error {
 	twirpHandler := userpbs.NewUserServceServer(app.userRPC,
 		twirp.WithServerPathPrefix("/rz"),
 		twirp.WithServerInterceptors(infrastructure.NewInterceptor()),
+
 		twirp.WithServerHooks(rzlog.TwirpServerLoggingHook()))
 	app.httpServer.Handler = twirpHandler
 	return nil
